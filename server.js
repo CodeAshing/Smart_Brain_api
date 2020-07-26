@@ -24,7 +24,7 @@ app.use(bodyParser.json())
 app.use(cors())
 
 app.get('/',(req,res)=>{
-    res.json(db.users)
+    res.send('its working')
 })
 app.post('/signin',signInHandler(db,bcrypt))
 app.post('/register',handleRegister(bcrypt,db))
