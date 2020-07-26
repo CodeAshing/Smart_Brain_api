@@ -3,9 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "start": "nodemon server.js"
-  },
+ "scripts": {
+"dev": "react-scripts start",
+"start": "serve -s build",
+"build": "react-scripts build",
+"test": "react-scripts test --env=jsdom",
+"eject": "react-scripts eject",
+"heroku-postbuild": "npm run build"
+},
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -15,7 +20,8 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "knex": "^0.21.2",
-    "pg": "^8.3.0"
+    "pg": "^8.3.0",
+    "serve": "^11.3.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
