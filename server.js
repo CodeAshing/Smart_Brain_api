@@ -1,0 +1,37 @@
+const express=require('express')
+const bodyParser=require('body-parser')
+const bcrypt=require('bcrypt-nodejs')
+const cors=require('cors')
+const knex=require('knex')
+const { handleRegister } = require('./controllers/register')
+const { imageHandler, handleApiCall } = require('./controllers/image')
+const { signInHandler } = require('./controllers/signin')
+const { profileHandler } = require('./controllers/profile')
+
+const db=knex({
+    client: 'pg',
+    connection: {
+      host : '127.0.0.1',
+      user : 'postgres',
+      password : '20oct1999',
+      database : 'Smart_brain'
+    }
+  });
+
+const app=express()
+
+app.use(bodyParser.json())
+app.use(cors())
+
+app.get('/',(req,res)=>{
+    res.json(db.users)
+})
+app.post('/signin',signInHandler(db,bcrypt))
+app.post('/register',handleRegister(bcrypt,db))
+app.get('/profile/:id',profileHandler(db))
+app.put('/image', imageHandler(db)) 
+app.post('/imageUrl', (req,res)=> handleApiCall(req,res))    
+
+app.listen(3001 ,()=>{
+    console.log('I am running!!!')
+})
