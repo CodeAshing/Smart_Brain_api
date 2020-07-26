@@ -32,6 +32,6 @@ app.get('/profile/:id',profileHandler(db))
 app.put('/image', imageHandler(db)) 
 app.post('/imageUrl', (req,res)=> handleApiCall(req,res))    
 
-app.listen(3001 ,()=>{
+app.listen(process.env.PORT || 3001 ,()=>{
     console.log('I am running!!!')
 })
