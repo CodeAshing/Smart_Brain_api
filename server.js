@@ -31,5 +31,5 @@ app.put('/image', imageHandler(db))
 app.post('/imageUrl', (req,res)=> handleApiCall(req,res))    
 
 app.listen(process.env.PORT || 3001 ,()=>{
-    console.log('I am running!!!')
+    console.log(`I am running!!! on ${process.env.DATABASE_URL}`)
 })
