@@ -37,7 +37,7 @@ const handleRegister=(bcrypt,db)=>(req,res)=>{
         .then(user=>{
             res.json(user[0])
         })
-        .catch(err=> res.status(400).json('unable to register'))        
+        .catch(err=> res.status(400).json('unable to login'))        
     }
 }
 
