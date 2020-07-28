@@ -33,7 +33,7 @@ const signInHandler=(db,bcrypt)=>(req,res)=>{
                     })
                     .catch(err=> res.status(400).json('unable to get user'))
                 })
-                .catch(err=> res.status(400).json('unable to get user'))
+                .catch(err=> res.status(400).json('unable to get login'))
     }
 }
 module.exports={
