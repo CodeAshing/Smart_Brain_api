@@ -11,7 +11,7 @@ const { profileHandler } = require('./controllers/profile')
 const db=knex({
     client: 'pg',
     connection: {
-      connectString : process.env.DATABASE_URL,
+      connectString :'postgres://npwmxcviuadgtf:c9872aff8add4d2209d9ee270aebf703323fb2e115ab1146a94b63e0c4b06114@ec2-34-225-162-157.compute-1.amazonaws.com:5432/d18lscnm89p3cv',
       ssl:true,
     }
   });
