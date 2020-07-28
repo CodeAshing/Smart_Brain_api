@@ -11,7 +11,7 @@ const { profileHandler } = require('./controllers/profile')
 const db=knex({
     client: 'pg',
     connection: {
-      connectString :'postgres://npwmxcviuadgtf:c9872aff8add4d2209d9ee270aebf703323fb2e115ab1146a94b63e0c4b06114@ec2-34-225-162-157.compute-1.amazonaws.com:5432/d18lscnm89p3cv',
+      connectString : process.env.DATABASE_URL,
       ssl:true,
     }
   });
@@ -32,4 +32,5 @@ app.post('/imageUrl', (req,res)=> handleApiCall(req,res))
 
 app.listen(process.env.PORT || 3001 ,()=>{
     console.log(`I am running!!! on ${process.env.PORT}`)
+    console.log( process.env.DATABASE_URL) 
 })
