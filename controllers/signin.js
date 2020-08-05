@@ -25,7 +25,7 @@ const signInHandler=(db,bcrypt)=>(req,res)=>{
 
         db.select('*').from('login')
         .where(
-            'email',email
+            'email','=',email
         ).then(data=>{
             console.log('here 2')
             return db.select('*').from('users')
