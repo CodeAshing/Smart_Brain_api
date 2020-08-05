@@ -21,14 +21,17 @@ const signInHandler=(db,bcrypt)=>(req,res)=>{
         //     }
         // })
         // .catch(err=>res.status(400).json('Wrong '))
+        console.log('here 1')
         db.select('email','hash').from('login')
         .where({
             email:email,
             hash:password
         }).then(data=>{
+            console.log('here 2')
             return db.select('*').from('users')
                     .where('email','=',email)
                     .then(user=>{
+                     console.log('here 3')
                         res.json(user[0])
                     })
                     .catch(err=> res.status(400).json('unable to get user'))
