@@ -21,7 +21,8 @@ const signInHandler=(db,bcrypt)=>(req,res)=>{
         //     }
         // })
         // .catch(err=>res.status(400).json('Wrong '))
-        console.log('here 1')
+        console.log('here 1',email,password)
+
         db.select('email','hash').from('login')
         .where({
             email:email,
