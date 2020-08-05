@@ -23,11 +23,10 @@ const signInHandler=(db,bcrypt)=>(req,res)=>{
         // .catch(err=>res.status(400).json('Wrong '))
         console.log('here 1',email,password)
 
-        db.select('email','hash').from('login')
-        .where({
-            email:email,
-            hash:password
-        }).then(data=>{
+        db.select('*').from('login')
+        .where(
+            'email',email
+        ).then(data=>{
             console.log('here 2')
             return db.select('*').from('users')
                     .where('email','=',email)
