@@ -27,7 +27,7 @@ app.get('/',(req,res)=>{
     res.send('its working')
 })
 app.post('/signin',signInHandler(db,bcrypt))
-app.post('/register',handleRegister(bcrypt,db))
+app.post('/register',(req,res)=>{ handleRegister(req,res,bcrypt,db)})
 app.get('/profile/:id',profileHandler(db))
 app.put('/image', imageHandler(db)) 
 app.post('/imageUrl', (req,res)=> handleApiCall(req,res))    
