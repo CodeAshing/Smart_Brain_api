@@ -1,9 +1,8 @@
-const handleRegister=(req,res,bcrypt,db)=>{    
+const handleRegister=(bcrypt,db)=>(req,res)=>{    
     const {email,name,password}=req.body
     if(!email || !name || !password){
         res.status(400).json('Incorrect form submission')
     }else{
-        console.log('here 0')
         const hash =bcrypt.hashSync(password)    
         db.transaction(trx=>{
             trx.insert({
@@ -13,7 +12,7 @@ const handleRegister=(req,res,bcrypt,db)=>{
             .into('login')
             .returning('email')
             .then(loginEmail=>{
-                console.log('here 1',loginEmail[0])               
+                console.log('1',loginEmail[0])               
                 return trx('users')
                 .returning('*')
                 .insert({
@@ -22,7 +21,7 @@ const handleRegister=(req,res,bcrypt,db)=>{
                     joined:new Date()
                 })    
                 .then(user=>{ 
-                    console.log('here 2',user)   
+                    console.log('2',user)   
                     res.json(user[0])
                 })
             })
