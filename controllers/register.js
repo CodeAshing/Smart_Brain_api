@@ -13,7 +13,7 @@ const handleRegister=(bcrypt,db)=>(req,res)=>{
             .returning('email')
             .then(loginEmail=>{
                 console.log('1',loginEmail[0])               
-                 trx('users')
+                return trx('users')
                 .returning('*')
                 .insert({
                     email:loginEmail[0],
@@ -24,7 +24,6 @@ const handleRegister=(bcrypt,db)=>(req,res)=>{
                     console.log('2',user)   
                     res.json(user[0])
                 })
-                .catch(err=> res.status(400).json(err))
             })
             .then(trx.commit)
             .catch(trx.rollback)        
